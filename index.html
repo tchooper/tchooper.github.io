@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thomas Hooper — Marketing · Communications · Production</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a3a5c;
+    --navy-dark: #0f2236;
+    --navy-light: #2a4f7a;
+    --gold: #8a7355;
+    --cream: #faf9f6;
+    --cream-dark: #f0ede8;
+    --text: #2a2a2a;
+    --text-light: #666;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(250,249,246,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(26,58,92,0.08);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--navy); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+
+  .hero-left {
+    background: var(--navy);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 70px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -60px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .hero-tagline {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero-name span {
+    display: block;
+    font-style: italic;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .hero-disciplines {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .discipline {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    padding: 6px 14px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 2px;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+
+  .btn-primary {
+    padding: 14px 32px;
+    background: var(--gold);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: #7a6345;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    padding: 14px 32px;
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.25);
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: rgba(255,255,255,0.6);
+    color: var(--white);
+    transform: translateY(-2px);
+  }
+
+  .hero-right {
+    background: var(--cream-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-photo-placeholder {
+    width: 380px;
+    height: 480px;
+    background: var(--navy-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: rgba(255,255,255,0.3);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    position: relative;
+  }
+
+  .hero-photo-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .photo-icon {
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 70vh;
+  }
+
+  .about-photo {
+    background: var(--navy-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: rgba(255,255,255,0.3);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+  }
+
+  .about-content {
+    padding: 80px 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--cream);
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .about-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--navy);
+    line-height: 1.1;
+    margin-bottom: 32px;
+  }
+
+  .about-text {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--text-light);
+    margin-bottom: 40px;
+    max-width: 480px;
+  }
+
+  .about-text strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .about-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .detail-row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    font-size: 13px;
+  }
+
+  .detail-label {
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--navy);
+    font-size: 11px;
+    min-width: 100px;
+  }
+
+  .detail-value {
+    color: var(--text-light);
+    font-weight: 300;
+  }
+
+  /* ── WORK ── */
+  .work {
+    padding: 100px 60px;
+    background: var(--cream-dark);
+  }
+
+  .work-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+  }
+
+  .work-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    font-weight: 300;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .work-item {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: var(--navy-dark);
+    cursor: pointer;
+  }
+
+  .work-item:first-child {
+    grid-column: span 2;
+    aspect-ratio: 16/9;
+  }
+
+  .work-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+    transition: transform 0.4s ease;
+  }
+
+  .work-item:nth-child(2) .work-placeholder {
+    background: linear-gradient(135deg, #2a1f0f 0%, #4a3520 100%);
+  }
+
+  .work-item:nth-child(3) .work-placeholder {
+    background: linear-gradient(135deg, #0f1f2a 0%, #1a3040 100%);
+  }
+
+  .work-item:nth-child(4) .work-placeholder {
+    background: linear-gradient(135deg, #1a1a2e 0%, #2a2a4e 100%);
+  }
+
+  .work-item:nth-child(5) .work-placeholder {
+    background: linear-gradient(135deg, #1f2a1a 0%, #2a3a20 100%);
+  }
+
+  .work-item:hover .work-placeholder {
+    transform: scale(1.04);
+  }
+
+  .work-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 20, 35, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .work-item:hover .work-overlay { opacity: 1; }
+
+  .work-item-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .work-item-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--white);
+  }
+
+  .work-placeholder-text {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    text-align: center;
+  }
+
+  .work-placeholder-icon {
+    font-size: 28px;
+    opacity: 0.2;
+  }
+
+  /* ── SERVICES / SKILLS ── */
+  .skills {
+    padding: 100px 60px;
+    background: var(--navy);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .skills-left {
+    position: sticky;
+    top: 100px;
+  }
+
+  .skills-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  .skills-desc {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .skill-card {
+    padding: 40px 36px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.3s;
+  }
+
+  .skill-card:hover {
+    background: rgba(255,255,255,0.08);
+  }
+
+  .skill-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.08);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .skill-title {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .skill-desc {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    padding: 120px 60px;
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .contact-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    font-weight: 300;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+
+  .contact-heading em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .contact-text {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--text-light);
+    margin-bottom: 40px;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    group: true;
+  }
+
+  .contact-link-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    min-width: 60px;
+  }
+
+  .contact-link-value {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--navy);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .contact-link:hover .contact-link-value {
+    border-color: var(--navy);
+  }
+
+  .contact-right {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .resume-card {
+    background: var(--navy);
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .resume-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--white);
+  }
+
+  .resume-card-text {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.7;
+  }
+
+  .resume-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: var(--gold);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    width: fit-content;
+    transition: background 0.2s;
+  }
+
+  .resume-download:hover { background: #7a6345; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 32px 60px;
+    background: var(--navy-dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { gap: 20px; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { min-height: 300px; }
+    .hero-left { padding: 60px 32px; }
+    .hero-name { font-size: 52px; }
+    .about { grid-template-columns: 1fr; }
+    .about-content { padding: 60px 32px; }
+    .work { padding: 60px 24px; }
+    .work-grid { grid-template-columns: 1fr; }
+    .work-item:first-child { grid-column: span 1; }
+    .skills { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+    .skills-left { position: static; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .contact { grid-template-columns: 1fr; padding: 60px 24px; }
+    footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Thomas Hooper</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-tagline">Greenville, SC &nbsp;·&nbsp; MBA, Clemson University</p>
+    <h1 class="hero-name">
+      Thomas
+      <span>Hooper</span>
+    </h1>
+    <div class="hero-disciplines">
+      <span class="discipline">Marketing</span>
+      <span class="discipline">Communications</span>
+      <span class="discipline">Production</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#work" class="btn-primary">View Work</a>
+      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <!-- REPLACE THIS DIV WITH: <img src="your-headshot.jpg" style="width:100%;height:100%;object-fit:cover;"> -->
+    <div class="hero-photo-placeholder">
+      <div class="photo-icon">📷</div>
+      <span>Add your headshot here</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-photo">
+    <!-- REPLACE THIS DIV WITH: <img src="your-lifestyle-photo.jpg" style="width:100%;height:100%;object-fit:cover;"> -->
+    <div class="about-photo-placeholder">
+      <div class="photo-icon" style="font-size:28px;opacity:0.2;">🎭</div>
+      <span style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;">Add lifestyle photo here</span>
+    </div>
+  </div>
+  <div class="about-content">
+    <p class="section-label">About</p>
+    <h2 class="about-heading">Storyteller.<br>Strategist.<br>Producer.</h2>
+    <p class="about-text">
+      I'm a Greenville native and Clemson graduate who lives at the intersection of the creative and corporate worlds. <strong>By day I build brands and communications strategies. By night I make theater happen.</strong> I believe the best work happens when you bring genuine storytelling instincts to business problems, and I try to do that in everything I touch.
+    </p>
+    <div class="about-details">
+      <div class="detail-row">
+        <span class="detail-label">Based in</span>
+        <span class="detail-value">Greenville, SC</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Education</span>
+        <span class="detail-value">MBA + BS Marketing, Clemson University</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Currently</span>
+        <span class="detail-value">Co-Founder, Pharos Theater &nbsp;·&nbsp; Building Broth</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="work-header">
+    <div>
+      <p class="section-label">Selected Work</p>
+      <h2 class="work-heading">What I've<br>Been Building</h2>
+    </div>
+  </div>
+  <div class="work-grid">
+
+    <!-- Item 1 - Video (featured, spans 2 cols) -->
+    <div class="work-item">
+      <!-- REPLACE WITH: <video src="your-show-video.mp4" controls style="width:100%;height:100%;object-fit:cover;"></video> -->
+      <!-- OR: <iframe src="https://www.youtube.com/embed/YOUR_ID" style="width:100%;height:100%;border:none;"></iframe> -->
+      <div class="work-placeholder">
+        <span class="work-placeholder-icon">▶</span>
+        <span class="work-placeholder-text">Add show video here</span>
+      </div>
+      <div class="work-overlay">
+        <span class="work-item-label">Theater Production</span>
+        <span class="work-item-title">Pharos Theater — Show Reel</span>
+      </div>
+    </div>
+
+    <!-- Item 2 - Poster -->
+    <div class="work-item">
+      <!-- REPLACE WITH: <img src="your-play-poster.jpg" style="width:100%;height:100%;object-fit:cover;"> -->
+      <div class="work-placeholder">
+        <span class="work-placeholder-icon">🎭</span>
+        <span class="work-placeholder-text">Add play poster here</span>
+      </div>
+      <div class="work-overlay">
+        <span class="work-item-label">Print Design</span>
+        <span class="work-item-title">Pharos Theater — Production Poster</span>
+      </div>
+    </div>
+
+    <!-- Item 3 - BB Materials -->
+    <div class="work-item">
+      <!-- REPLACE WITH: <img src="your-bb-material.jpg" style="width:100%;height:100%;object-fit:cover;"> -->
+      <div class="work-placeholder">
+        <span class="work-placeholder-icon">📊</span>
+        <span class="work-placeholder-text">Add Building Broth material</span>
+      </div>
+      <div class="work-overlay">
+        <span class="work-item-label">Brand Strategy</span>
+        <span class="work-item-title">Building Broth — Brand & Pitch</span>
+      </div>
+    </div>
+
+    <!-- Item 4 - BTS -->
+    <div class="work-item">
+      <!-- REPLACE WITH: <img src="your-bts-photo.jpg" style="width:100%;height:100%;object-fit:cover;"> -->
+      <div class="work-placeholder">
+        <span class="work-placeholder-icon">📸</span>
+        <span class="work-placeholder-text">Add BTS photo here</span>
+      </div>
+      <div class="work-overlay">
+        <span class="work-item-label">Behind the Scenes</span>
+        <span class="work-item-title">Pharos Theater — Production</span>
+      </div>
+    </div>
+
+    <!-- Item 5 - Additional -->
+    <div class="work-item">
+      <!-- REPLACE WITH: <img src="your-additional-work.jpg" style="width:100%;height:100%;object-fit:cover;"> -->
+      <div class="work-placeholder">
+        <span class="work-placeholder-icon">✦</span>
+        <span class="work-placeholder-text">Add additional work here</span>
+      </div>
+      <div class="work-overlay">
+        <span class="work-item-label">Communications</span>
+        <span class="work-item-title">Campaign Work</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills">
+  <div class="skills-left">
+    <p class="section-label" style="color: rgba(138,115,85,0.8);">What I Do</p>
+    <h2 class="skills-heading">Where I<br>Add Value</h2>
+    <p class="skills-desc">I bring strategic thinking and executional discipline to marketing, communications, and production challenges.</p>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-number">01</div>
+      <div class="skill-title">Brand & Marketing</div>
+      <p class="skill-desc">Building brand identities, executing campaigns, and growing audiences through strategic, audience-centered content.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-number">02</div>
+      <div class="skill-title">Communications</div>
+      <p class="skill-desc">Writing, editing, and managing communications across channels — from leadership messaging to community-facing content.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-number">03</div>
+      <div class="skill-title">Content & Design</div>
+      <p class="skill-desc">Creating branded digital and print collateral using Adobe Creative Suite and Canva, end to end.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-number">04</div>
+      <div class="skill-title">Production</div>
+      <p class="skill-desc">Managing complex productions from pre-production through execution, coordinating teams, vendors, and stakeholders.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-number">05</div>
+      <div class="skill-title">Grant & Proposal Writing</div>
+      <p class="skill-desc">Writing persuasive, compliant proposals and grant applications that win funding and advance organizational goals.</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-number">06</div>
+      <div class="skill-title">Operations</div>
+      <p class="skill-desc">Keeping complex organizations running — contracts, compliance, systems, timelines, and stakeholder coordination.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div>
+    <p class="section-label">Contact</p>
+    <h2 class="contact-heading">Let's Make<br>Something <em>Good.</em></h2>
+    <p class="contact-text">Whether you're looking for a collaborator, a hire, or just want to connect — reach out. I'm always open to a good conversation.</p>
+    <div class="contact-links">
+      <a href="mailto:tchooper815@gmail.com" class="contact-link">
+        <span class="contact-link-label">Email</span>
+        <span class="contact-link-value">tchooper815@gmail.com</span>
+      </a>
+      <a href="tel:8646302365" class="contact-link">
+        <span class="contact-link-label">Phone</span>
+        <span class="contact-link-value">(864) 630-2365</span>
+      </a>
+      <div class="contact-link">
+        <span class="contact-link-label">Based</span>
+        <span class="contact-link-value">Greenville, SC</span>
+      </div>
+    </div>
+  </div>
+  <div class="contact-right">
+    <div class="resume-card">
+      <h3 class="resume-card-title">Download My Resume</h3>
+      <p class="resume-card-text">A full overview of my experience in marketing, communications, and operations.</p>
+      <!-- UPDATE href TO POINT TO YOUR RESUME PDF -->
+      <a href="ThomasHooper_BlastResume.docx" class="resume-download" download>Download Resume →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Thomas Hooper</span>
+  <span class="footer-copy">Marketing · Communications · Production · Greenville, SC</span>
+</footer>
+
+</body>
+</html>
